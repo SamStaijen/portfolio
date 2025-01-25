@@ -28,7 +28,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: build in dist folder
-        run: bun build
+        run: bun bundle
         
       - name: Upload static files as artifact
         id: deployment

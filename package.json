@@ -9,7 +9,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "bun run src/index.ts",
+    "bundle": "bun run src/index.ts",
     "serve": "bun run server.ts"
   },
   "type": "module",
