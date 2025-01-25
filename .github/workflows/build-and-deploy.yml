@@ -22,7 +22,7 @@ jobs:
       PORT: ${{ secrets.PORT }}
       CONTENTFUL_SPACE_ID : ${{ secrets.CONTENTFUL_SPACE_ID }}
       CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-      
+
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -39,7 +39,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build_outputs_folder/
+          path: dist/
   deploy:
     # Add a dependency to the build job
     needs: build
