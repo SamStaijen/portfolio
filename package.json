@@ -1,0 +1,20 @@
+{
+  "name": "portfolio",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "@types/figlet": "^1.7.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "bun run src/index.ts",
+    "serve": "bun run server.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "contentful": "^11.4.4",
+    "figlet": "^1.8.0"
+  }
+}
