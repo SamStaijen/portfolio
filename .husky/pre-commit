@@ -1,2 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged to format the files
 bunx lint-staged
-bun test || exit 1s
+
+# Run tests with bun and prevent commit if tests fail
+bun test || exit 1
