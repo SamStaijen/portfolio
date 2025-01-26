@@ -4,9 +4,9 @@ name: Build and Deploy
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   repository_dispatch:
     types: [publish-content]
   # Allows you to run this workflow manually from the Actions tab
@@ -21,7 +21,7 @@ jobs:
     env:
       DOMAIN: ${{ secrets.DOMAIN }}
       PORT: ${{ secrets.PORT }}
-      CONTENTFUL_SPACE_ID : ${{ secrets.CONTENTFUL_SPACE_ID }}
+      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
       CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
     steps:
@@ -35,7 +35,7 @@ jobs:
 
       - name: build in dist folder
         run: bun bundle
-        
+
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
@@ -47,8 +47,8 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
 
     # Deploy to the github-pages environment
     environment:
