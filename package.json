@@ -22,6 +22,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^17.0.0",
     "contentful": "^11.4.4",
     "figlet": "^1.8.0"
   }
