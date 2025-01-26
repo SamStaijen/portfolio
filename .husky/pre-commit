@@ -1,1 +1,1 @@
-bun prettify
+bunx lint-staged
