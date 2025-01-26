@@ -1,14 +1,14 @@
-import { mkdirSync, existsSync, writeFileSync } from "fs";
-import { fetchEntries } from "./contentful";
+import { mkdirSync, existsSync, writeFileSync } from 'fs';
+import { fetchEntries } from './contentful';
 
 // Ensure the 'dist' directory exists
-if (!existsSync("dist")) {
-  mkdirSync("dist");
+if (!existsSync('dist')) {
+  mkdirSync('dist');
 }
 
 // Fetch data from Contentful
 async function buildSite() {
-  const entries = await fetchEntries("exampleContentModel");
+  const entries = await fetchEntries('exampleContentModel');
 
   // Generate simple HTML
   const html = `
@@ -32,16 +32,16 @@ async function buildSite() {
           <h2>${entry.fields.title}</h2>
           <p>${entry.fields.description}</p>
         </div>
-      `
+      `,
         )
-        .join("")}
+        .join('')}
     </body>
     </html>
   `;
 
   // Write HTML to the output directory
-  writeFileSync("dist/index.html", html);
-  console.log("Static site built: dist/index.html");
+  writeFileSync('dist/index.html', html);
+  console.log('Static site built: dist/index.html');
 }
 
 buildSite().catch(console.error);

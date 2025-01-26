@@ -3,14 +3,24 @@
   "module": "index.ts",
   "devDependencies": {
     "@types/bun": "^1.2.0",
-    "@types/figlet": "^1.7.0"
+    "@types/figlet": "^1.7.0",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.2",
+    "prettier": "^3.4.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "scripts": {
     "bundle": "bun run src/index.ts",
-    "serve": "bun run server.ts"
+    "serve": "bun run server.ts",
+    "dev": "bun bundle && bun serve",
+    "prettify": "bun prettier . --write"
   },
   "type": "module",
   "dependencies": {
