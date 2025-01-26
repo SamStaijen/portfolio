@@ -1,5 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/_/h"
 
 # Run lint-staged to format the files
 bunx lint-staged
