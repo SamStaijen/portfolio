@@ -3,6 +3,7 @@ import { fetchEntries } from './contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { promises } from 'fs';
 
+
 // Ensure the 'dist' directory exists
 if (!existsSync('dist')) {
   mkdirSync('dist');
@@ -156,12 +157,12 @@ a {
     font-weight: bold;
     transition: color 0.3s ease;
 }
-
 a:hover {
     color: #0056b3;
 }
 
   `;
+  // Generate simple HTML with Rich Text parsed to HTML
   const html = `
     <!DOCTYPE html>
     <html lang="en">
