@@ -1,20 +1,14 @@
-import { mkdirSync, existsSync, writeFileSync } from 'fs';
-import { fetchEntries } from './contentful';
+import { writeFileSync } from 'fs';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { promises } from 'fs';
 
 
-// Ensure the 'dist' directory exists
-if (!existsSync('dist')) {
-  mkdirSync('dist');
-}
-
 // Generate the main index.html with a navbar and links to individual blog posts
-async function buildMainPage(entries: any[]) {
+export async function buildMainPage(entries: any[]) {
   const navbarLinks = entries
     .map(
       (entry: any) => `
-        <option value="post-${entry.sys.id}">${entry.fields.title}</option>
+        <option value="post-${entry.sys.id}.html">${entry.fields.title}</option>
       `,
     )
     .join('');
@@ -90,7 +84,6 @@ select:hover {
     color: inherit;
     transition: color 0.3s ease;
 }
-
 .entry a:hover {
     color: #0056b3;
 }
@@ -144,6 +137,7 @@ article h2 {
     color: #007BFF;
     margin-bottom: 20px;
 }
+
 
 article .description {
     font-size: 1.2rem;
@@ -207,60 +201,5 @@ a:hover {
   writeFileSync('dist/index.html', html);
   writeFileSync('dist/styles.css', css);
   console.log('Main page built: dist/index.html');
+
 }
-
-// Generate a separate HTML page for each blog post
-async function buildPostPage(entry: any) {
-  const { title, description } = entry.fields;
-  const richTextHtml = documentToHtmlString(description);
-
-  const postHtml = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>${title}</title>
-      <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-      <header>
-        <h1>${Bun.env['DOMAIN']}</h1>
-        <nav>
-          <a href="index.html">Home</a>
-        </nav>
-      </header>
-      <main>
-        <article>
-          <h2>${title}</h2>
-          <div class="description">${richTextHtml}</div>
-        </article>
-      </main>
-    </body>
-    </html>
-  `;
-
-  // Write the individual blog post page to the output directory
-  writeFileSync(`dist/post-${entry.sys.id}.html`, postHtml);
-  console.log(`Post page built: dist/post-${entry.sys.id}.html`);
-}
-
-// Fetch data from Contentful and generate the pages
-async function buildSite() {
-  const entries = await fetchEntries('exampleContentModel');
-
-  // Build the main page with the navbar
-  await buildMainPage(entries);
-
-  // Build individual pages for each blog post
-  for (const entry of entries) {
-    await buildPostPage(entry);
-  }
-}
-
-// Run the build process
-async function build() {
-  await buildSite(); // Build the site
-}
-
-build().catch(console.error);

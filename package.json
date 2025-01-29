@@ -15,7 +15,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "scripts": {
-    "bundle": "bun run src/index.ts",
+    "bundle": "bun run src/builder.ts",
     "serve": "bun run server.ts",
     "dev": "bun bundle && bun serve",
     "prettify": "bun prettier . --write"
