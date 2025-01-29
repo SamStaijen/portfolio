@@ -1,5 +1,7 @@
 import { writeFileSync } from 'fs';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { promises } from 'fs';
+
 
 // Generate the main index.html with a navbar and links to individual blog posts
 export async function buildMainPage(entries: any[]) {
@@ -82,7 +84,6 @@ select:hover {
     color: inherit;
     transition: color 0.3s ease;
 }
-
 .entry a:hover {
     color: #0056b3;
 }
@@ -136,6 +137,7 @@ article h2 {
     color: #007BFF;
     margin-bottom: 20px;
 }
+
 
 article .description {
     font-size: 1.2rem;
@@ -199,4 +201,5 @@ a:hover {
   writeFileSync('dist/index.html', html);
   writeFileSync('dist/styles.css', css);
   console.log('Main page built: dist/index.html');
+
 }
